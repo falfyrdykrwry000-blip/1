@@ -1,0 +1,6 @@
+Flask
+gunicorn
+pg8000
+flask-cors
+requests
+python-dotenv
