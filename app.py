@@ -15,6 +15,19 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'fm-api-secret-key-2026')
 
+# ========== CORS ==========
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    return response
+
+@app.route('/api/send-code', methods=['OPTIONS'])
+@app.route('/api/verify-code', methods=['OPTIONS'])
+def handle_options():
+    return '', 200
+
 MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtppro.zoho.com')
 MAIL_PORT = int(os.environ.get('MAIL_PORT', 587))
 MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 'verification@krar.qzz.io')
