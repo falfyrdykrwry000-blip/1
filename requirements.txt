@@ -1,4 +1,2 @@
-fastapi
-uvicorn
+flask
 gunicorn
-pydantic
